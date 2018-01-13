@@ -1,8 +1,8 @@
 {
-  "name": "input-binding",
+  "name": "checkbox-binding",
   "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "pavlo <pavelnemoi@gmail.com>",
+  "author": "Paul <pavelnemoi@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
