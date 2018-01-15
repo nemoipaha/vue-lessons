@@ -2,18 +2,21 @@
   <div id="app">
     <!-- <add-blog></add-blog> -->
     <show-blogs></show-blogs>
+    <list-blogs></list-blogs>
   </div>
 </template>
 
 <script>
 import addBlog from './components/addBlog'
 import showBlogs from './components/showBlogs'
+import listBlogs from './components/listBlogs'
 
 export default {
   name: 'app',
   components: {
     addBlog,
-    showBlogs
+    showBlogs,
+    listBlogs
   },
   data () {
     return {

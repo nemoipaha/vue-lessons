@@ -42,7 +42,7 @@ export default {
       }
     }
   },
-  mixins: [searchMixin]
+  mixins: [searchMixin]  
 }
 </script>
 
