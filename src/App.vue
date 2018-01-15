@@ -1,22 +1,17 @@
 <template>
   <div id="app">
-    <!-- <add-blog></add-blog> -->
-    <show-blogs></show-blogs>
-    <list-blogs></list-blogs>
+    <app-header></app-header>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import addBlog from './components/addBlog'
-import showBlogs from './components/showBlogs'
-import listBlogs from './components/listBlogs'
+import header from './components/header'
 
 export default {
   name: 'app',
   components: {
-    addBlog,
-    showBlogs,
-    listBlogs
+    'app-header': header
   },
   data () {
     return {
@@ -26,7 +21,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -49,5 +44,10 @@ li {
 
 a {
   color: #42b983;
+}
+
+body {
+  padding: 0;
+  margin: 0;
 }
 </style>
