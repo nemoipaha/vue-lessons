@@ -21,8 +21,7 @@ export default {
     this.$http
       .get('https://jsonplaceholder.typicode.com/posts')
       .then((data) => {
-        console.log(data);
-        this.blogs = data.body.slice(0, 10);
+        this.blogs = data.body.slice(0, 10);        
       });
   },
   computed: {
@@ -30,6 +29,19 @@ export default {
       return this.blogs.filter(blog => {
         return blog.title.match(this.search);
       });
+    }
+  },
+  filters: {
+    toUppercase(value) {
+      return value.toString().toUpperCase();
+    }
+  },
+  directives: {
+    rainbow: {
+      bind(el, binding, vnode) {
+        // console.log(el, binding, vnode);
+        el.style.color = '#' + Math.random().toString().slice(2, 8);
+      }
     }
   }
 }

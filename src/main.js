@@ -4,12 +4,12 @@ import VueResource from 'vue-resource'
 
 Vue.use(VueResource);
 
-Vue.directive('rainbow', {
-	bind(el, binding, vnode) {
-		// console.log(el, binding, vnode);
-		el.style.color = '#' + Math.random().toString().slice(2, 8);
-	}
-});
+// Vue.directive('rainbow', {
+// 	bind(el, binding, vnode) {
+// 		// console.log(el, binding, vnode);
+// 		el.style.color = 'red';
+// 	}
+// });
 
 Vue.directive('theme', {
 	bind(el, binding, vnode) {
@@ -26,9 +26,9 @@ Vue.directive('theme', {
 	}
 });
 
-Vue.filter('to-uppercase', function(value) {
-	return value.toString().toUpperCase();
-});
+// Vue.filter('to-uppercase', function(value) {
+// 	return value.toString().toUpperCase();
+// });
 
 Vue.filter('snippet', function(value) {
 	return value.toString().slice(0, 100) + '...';
