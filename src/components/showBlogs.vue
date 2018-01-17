@@ -3,7 +3,9 @@
     <h1>All posts</h1>
     <input type="text" v-model="search" placeholder="search">
     <div class="single-post" v-for="blog in filteredBlogs">
-      <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
+      <router-link v-bind:to="'blogs/' + blog.id">
+        <h2>{{ blog.title | to-uppercase }}</h2>
+      </router-link>
       <article>{{ blog.body | snippet }}</article>
     </div>
   </div>
