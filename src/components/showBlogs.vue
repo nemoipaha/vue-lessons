@@ -6,7 +6,7 @@
       <router-link v-bind:to="'blogs/' + blog.id">
         <h2>{{ blog.title | to-uppercase }}</h2>
       </router-link>
-      <article>{{ blog.body | snippet }}</article>
+      <article>{{ blog.content | snippet }}</article>
     </div>
   </div>
 </template>
@@ -23,9 +23,19 @@ export default {
   },
   created() {
     this.$http
-      .get('https://jsonplaceholder.typicode.com/posts')
+      .get('https://test-project-5bc2d.firebaseio.com/posts.json')
       .then((data) => {
-        this.blogs = data.body.slice(0, 3);        
+        return data.json();
+      })
+      .then((data) => {
+        let newBlogs = [];
+        
+        for (let key in data) {
+          data[key].id = key;
+          newBlogs.push(data[key]);
+        }
+
+        this.blogs = newBlogs;
       });
   },
   computed: {

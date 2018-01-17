@@ -67,11 +67,7 @@
         methods: {
           addPost() {
             this.$http
-              .post('https://jsonplaceholder.typicode.com/posts', {
-                title: this.blog.title,
-                body: this.blog.content,
-                userId: 1
-              })
+              .post('https://test-project-5bc2d.firebaseio.com/posts.json', this.blog)
               .then(function(data) {
                 console.log(data);
                 this.submitted = true
