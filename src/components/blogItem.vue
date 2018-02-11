@@ -24,13 +24,13 @@ export default {
   },
   
   computed: {
-    ...mapState('blogs', {
+    ...mapState('post', {
       blog: 'postItem'
     })    
   },
 
   methods: {
-    ...mapActions('blogs', [
+    ...mapActions('post', [
         'fetchPost',
     ]),
   },

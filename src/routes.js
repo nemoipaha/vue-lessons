@@ -12,15 +12,15 @@ export default [
 		component: showBlogs
 	},
 	{
-		path: '/blogs',
+		path: '/posts',
 		component: showBlogs
 	},
 	{
-		path: '/add-blog',
+		path: '/add-post',
 		component: addBlog
 	},
 	{
-		path: '/blogs/:id',
+		path: '/posts/:id',
 		component: blogItem
 	}		
 ];

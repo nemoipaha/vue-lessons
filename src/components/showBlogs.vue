@@ -5,7 +5,7 @@
     <input type="text" v-model="search" placeholder="search" @keyup="filterByTitle">
     
     <div class="single-post" v-for="blog in filteredBlogs">
-      <router-link v-bind:to="'blogs/' + blog.id">
+      <router-link v-bind:to="'posts/' + blog.id">
         <h2>{{ blog.title | to-uppercase }}</h2>
       </router-link>
       
@@ -28,11 +28,11 @@ export default {
   },
 
   methods: {
-    ...mapActions('blogs', [
+    ...mapActions('post', [
         'fetchPosts',
     ]),
 
-     ...mapMutations('blogs', [
+     ...mapMutations('post', [
       'SEARCH_BY_TITLE',
     ]),
 

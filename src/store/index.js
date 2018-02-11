@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-import blogs from './modules/blogs'
+import post from './modules/post';
 
 export const store = new Vuex.Store({
 	strict: true,
@@ -11,7 +11,7 @@ export const store = new Vuex.Store({
 	  	
 	},	
 	modules: {
-		blogs: blogs
+		post: post,		
 	}
 });
 

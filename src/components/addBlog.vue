@@ -68,13 +68,13 @@ export default {
     },
 
     computed: {
-      ...mapState('blogs', [
+      ...mapState('post', [
           'authors'
       ])
     },
 
     methods: {
-      ...mapActions('blogs', [
+      ...mapActions('post', [
         'addPost',
         'backToList'
       ]),
@@ -87,7 +87,7 @@ export default {
       },
 
       backToList() {
-        this.$router.push('/blogs');
+        this.$router.push('/posts');
       }   
 
     }

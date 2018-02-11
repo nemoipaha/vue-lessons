@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li><router-link to="/" exact>Blog</router-link></li>
-      <li><router-link to="/add-blog" exact>Add post</router-link></li>
+      <li><router-link to="/add-post" exact>Add post</router-link></li>
     </ul>
   </nav>
 </template>
