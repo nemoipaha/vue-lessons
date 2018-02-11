@@ -12,6 +12,10 @@ export default [
 		component: showBlogs
 	},
 	{
+		path: '/blogs',
+		component: showBlogs
+	},
+	{
 		path: '/add-blog',
 		component: addBlog
 	},

@@ -1,49 +1,29 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VueResource from 'vue-resource'
-import VueRouter from 'vue-router'
-import Routes from './routes'
+import Vue from 'vue';
+import App from './App.vue';
+import VueResource from 'vue-resource';
+import VueRouter from 'vue-router';
+import router from './router';
+import store from './store';
+import { sync } from 'vuex-router-sync';
+
+// filters
+import snippet from './filters/snippet';
+import toUppercase from './filters/toUppercase';
+
+// directives
+import theme from './directives/theme';
 
 Vue.use(VueResource);
-Vue.use(VueRouter);
 
-const router = new VueRouter({
-	routes: Routes,
-	mode: 'history'
-});
+Vue.directive('theme', theme);
+Vue.filter('snippet', snippet);
+Vue.filter('to-uppercase', toUppercase);
 
-// Vue.directive('rainbow', {
-// 	bind(el, binding, vnode) {
-// 		// console.log(el, binding, vnode);
-// 		el.style.color = 'red';
-// 	}
-// });
-
-Vue.directive('theme', {
-	bind(el, binding, vnode) {
-		if (binding.value === 'wide') {
-			el.style.maxWidth = '1200px';
-		} else if (binding.value === 'narrow') {
-			el.style.maxWidth = '560px';
-		}	
-
-		if (binding.arg === 'column') {
-			el.style.background = '#ddd';
-			el.style.padding = '20px';
-		}	
-	}
-});
-
-// Vue.filter('to-uppercase', function(value) {
-// 	return value.toString().toUpperCase();
-// });
-
-Vue.filter('snippet', function(value) {
-	return value.toString().slice(0, 100) + '...';
-});
+sync(store, router)
 
 new Vue({
   el: '#app',
   render: h => h(App),
-  router: router
+  router,
+  store
 })

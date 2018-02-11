@@ -5,6 +5,7 @@
         <form v-if="!submitted">
             <label>Blog title:</label>
             <input type="text" required v-model.lazy="blog.title">
+            
             <label>Blog content:</label>
             <textarea name=""
                       id=""
@@ -12,6 +13,7 @@
                       rows="10"
                       v-model.lazy="blog.content">
             </textarea>
+            
             <div id="checkboxes">
               <label>Ninjas</label>
               <input type="checkbox" value="ninjas" v-model="blog.categories">
@@ -22,10 +24,11 @@
               <label>Cheese</label>
               <input type="checkbox" value="chesee" v-model="blog.categories">
             </div>
+            
             <select v-model="blog.author">
               <option v-for="author in authors">{{ author }}</option>
             </select>
-            <button v-on:click.prevent="addPost">Add post</button>
+            <button v-on:click.prevent="savePost">Add post</button>
         </form>
 
         <div v-if="submitted">
@@ -46,35 +49,49 @@
 </template>
 
 <script>
-    export default {
-        name: "add-blog",
-        data() {
-            return {
-                blog: {
-                    title: '',
-                    content: '',
-                    categories: [],
-                    author: ''
-                },
-                authors: [
-                  'The Net Ninja',
-                  'The Angular Avenger',
-                  'The Vue Vindicator'
-                ],
-                submitted: false
-            }
-        },
-        methods: {
-          addPost() {
-            this.$http
-              .post('https://test-project-5bc2d.firebaseio.com/posts.json', this.blog)
-              .then(function(data) {
-                console.log(data);
-                this.submitted = true
-              });
-          }
+import { mapActions } from 'vuex';
+import { mapState } from 'vuex'
+
+export default {
+    name: "add-blog",
+    
+    data() {
+        return {
+            blog: {
+                title: '',
+                content: '',
+                categories: [],
+                author: ''
+            },
+            submitted: false
         }
+    },
+
+    computed: {
+      ...mapState('blogs', [
+          'authors'
+      ])
+    },
+
+    methods: {
+      ...mapActions('blogs', [
+        'addPost',
+        'backToList'
+      ]),
+
+      savePost() {
+        this.addPost(this.blog)
+          .then(() => {
+            this.backToList();
+          });
+      },
+
+      backToList() {
+        this.$router.push('/blogs');
+      }   
+
     }
+}
 </script>
 
 <style scoped>

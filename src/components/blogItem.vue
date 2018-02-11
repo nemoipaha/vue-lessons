@@ -1,8 +1,11 @@
 <template>
   <div id="single-blog">
     <h1>{{ blog.title }}</h1>
+    
     <article>{{ blog.content }}</article>
+    
     <p>Author: {{ blog.author }}</p>
+    
     <ul>
       <li v-for="category in blog.categories">{{ category }}</li>
     </ul>
@@ -10,22 +13,30 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { mapState } from 'vuex';
+
 export default {
   data () {
     return {
-      blog: {},
       id: this.$route.params.id
     }
   },
+  
+  computed: {
+    ...mapState('blogs', {
+      blog: 'postItem'
+    })    
+  },
+
+  methods: {
+    ...mapActions('blogs', [
+        'fetchPost',
+    ]),
+  },
+
   created() {
-    this.$http
-      .get('https://test-project-5bc2d.firebaseio.com/posts/' + this.id + '.json')
-      .then(function(data) {
-          return data.json();
-      })
-      .then(function(data) {
-          this.blog = data;
-      });
+    this.fetchPost(this.id);
   },
 }
 </script>
