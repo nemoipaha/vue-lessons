@@ -4,12 +4,12 @@
     
     <input type="text" v-model="search" placeholder="search" @keyup="filterByTitle">
     
-    <div class="single-post" v-for="blog in filteredBlogs">
-      <router-link v-bind:to="'posts/' + blog.id">
-        <h2>{{ blog.title | to-uppercase }}</h2>
-      </router-link>
-      
-      <article>{{ blog.content | snippet }}</article>
+    <div class="posts-wrapper">
+      <template v-for="post in filteredPosts">
+        <post
+          :post="post"         
+        />        
+      </template>
     </div>
   </div>
 </template>
@@ -17,10 +17,14 @@
 <script>
 import { mapActions } from 'vuex';
 import { mapMutations } from 'vuex';
-
-import searchMixin from '../mixins/searchMixin'
+import searchMixin from '../mixins/searchMixin';
+import Post from './Post';
 
 export default {
+  components: {
+    Post
+  },
+
   data () {
     return {
       search: ''
@@ -55,12 +59,5 @@ export default {
  #show-blogs {
     max-width: 800px;
     margin: 0 auto;
- }
-
- .single-post {
-    box-sizing: border-box;
-    margin: 20px 0;
-    background: #eee;
-    padding: 20px;
  }
 </style>

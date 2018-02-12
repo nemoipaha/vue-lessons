@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import post from './modules/post';
+import comment from './modules/comment';
 
 export const store = new Vuex.Store({
 	strict: true,
@@ -11,7 +12,8 @@ export const store = new Vuex.Store({
 	  	
 	},	
 	modules: {
-		post: post,		
+		post,	
+		comment	
 	}
 });
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Vue from 'vue';
-import router from '../../router';
 
 const state = {
 	blogs: [],
@@ -78,11 +77,11 @@ const actions = {
 };
 
 const getters = {
-	filteredBlogs: state => {
+	filteredPosts: state => {
 		return state.blogs.filter(blog => {
 	        return blog.title ? blog.title.toUpperCase().match(state.search.toUpperCase()) : false;
   		});
-	}
+	},
 };
 
 export default {
