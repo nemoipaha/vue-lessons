@@ -17,26 +17,29 @@ export default {
 </script>
 
 <style scoped>
-ul{
+ul {
     list-style-type: none;
     text-align: center;
     margin: 0;
 }
-li{
+
+li {
     display: inline-block;
     margin: 0 10px;
 }
-a{
+
+a {
     color: #fff;
     text-decoration: none;
     padding: 6px 8px;
     border-radius: 10px;
 }
-nav{
+
+nav {
     background: #444;
     padding: 14px 0;
-    margin-bottom: 40px;
 }
+
 .router-link-active{
     background: #eee;
     color: #444;

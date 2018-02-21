@@ -1,26 +1,24 @@
-// import showBlogs from './components/showBlogs';
-// import addBlog from './components/addBlog';
-// import blogItem from './components/blogItem';
-
-const showBlogs = () => import(/* webpackChunkName: "home" */ './components/showBlogs.vue');
-const addBlog = () => import(/* webpackChunkName: "addBlog" */ './components/addBlog.vue');
-const blogItem = () => import(/* webpackChunkName: "blogItem" */ './components/blogItem.vue');
+const PostList = () => import(/* webpackChunkName: "posts" */ './components/posts/PostList.vue');
+const AddPost = () => import(/* webpackChunkName: "addPost" */ './components/posts/AddPost.vue');
+const PostItemPage = () => import(
+	/* webpackChunkName: "postItem" */ './components/posts/PostItemPage.vue'
+);
 
 export default [
 	{
 		path: '/',
-		component: showBlogs
+		redirect: '/posts'
 	},
 	{
 		path: '/posts',
-		component: showBlogs
+		component: PostList,
 	},
 	{
 		path: '/add-post',
-		component: addBlog
-	},
+		component: AddPost
+	},		
 	{
 		path: '/posts/:id',
-		component: blogItem
-	}		
+		component: PostItemPage
+	}	
 ];

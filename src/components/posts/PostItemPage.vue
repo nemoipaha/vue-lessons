@@ -1,13 +1,13 @@
 <template>
   <div id="single-blog">
-    <h1>{{ blog.title }}</h1>
+    <h1>{{ post.title }}</h1>
     
-    <article>{{ blog.content }}</article>
+    <article>{{ post.content }}</article>
     
-    <p>Author: {{ blog.author }}</p>
+    <p>Author: {{ post.author }}</p>
     
     <ul>
-      <li v-for="category in blog.categories">{{ category }}</li>
+      <li v-for="(category, index) in post.categories" :key="index">{{ category }}</li>
     </ul>
   </div>
 </template>
@@ -19,13 +19,13 @@ import { mapState } from 'vuex';
 export default {
   data () {
     return {
-      id: this.$route.params.id
+      id: this.$route.params.id,
     }
   },
   
   computed: {
     ...mapState('post', {
-      blog: 'postItem'
+      post: 'postItem'
     })    
   },
 
@@ -38,6 +38,11 @@ export default {
   created() {
     this.fetchPost(this.id);
   },
+
+  beforeRouteUpdate (to, from, next) {
+    this.fetchPost(this.$route.params.id);
+    next();
+  }
 }
 </script>
 
@@ -45,5 +50,6 @@ export default {
 #single-blog {
   max-width: 960px;
   margin: 0 auto;
+  padding: 45px;
 }
 </style>

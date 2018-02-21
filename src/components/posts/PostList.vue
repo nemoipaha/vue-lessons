@@ -1,5 +1,5 @@
 <template>
-  <div id="show-blogs" v-theme:column=" 'narrow' ">
+  <div id="show-blogs">
     <h1>All posts</h1>
     
     <input type="text" v-model="search" placeholder="search" @keyup="filterByTitle">
@@ -7,7 +7,8 @@
     <div class="posts-wrapper">
       <template v-for="post in filteredPosts">
         <post
-          :post="post"         
+          :post="post"  
+          :key="post.id"       
         />        
       </template>
     </div>
@@ -17,7 +18,7 @@
 <script>
 import { mapActions } from 'vuex';
 import { mapMutations } from 'vuex';
-import searchMixin from '../mixins/searchMixin';
+import searchMixin from '../../mixins/searchMixin';
 import Post from './Post';
 
 export default {
@@ -59,5 +60,6 @@ export default {
  #show-blogs {
     max-width: 800px;
     margin: 0 auto;
+    padding: 25px;
  }
 </style>

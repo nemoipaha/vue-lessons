@@ -1,45 +1,39 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <router-view></router-view>
+    <app-header></app-header>  
+    <transition name="fade" mode="out-in">      
+      <router-view></router-view>
+    </transition>    
   </div>
 </template>
 
 <script>
-import header from './components/header.vue';
+import Header from './components/Header.vue';
 
 export default {
   name: 'app',
+  
   components: {
-    'app-header': header
-  },
-  data () {
-    return {
-      
-    }
+    'app-header': Header,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-a {
-  color: #42b983;
-}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
   padding: 0;
   margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s ease;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 </style>
   

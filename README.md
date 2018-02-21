@@ -1,4 +1,4 @@
-# checkbox-binding
+# Firebase blog app
 
 > A Vue.js project
 

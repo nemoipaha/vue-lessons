@@ -1,14 +1,13 @@
 <template>
 	<div class="single-post">
-		<router-link v-bind:to="'posts/' + post.id">
-			<h2>{{ post.title | to-uppercase }}</h2>
+		<router-link :to="'posts/' + post.id" tag="h2">
+			<span>{{ post.title | capitalize }}</span>
 		</router-link>
       
-    	<article>{{ post.content | snippet }}</article>
+    	<article>{{ post.content }}</article>
 
 		<div>
-			<button @click="toggleCommentForm">Add comment</button>        
-			
+			<button @click="toggleCommentForm">Add comment</button>        			
 			<add-comment-form 
 				v-if="showCommentForm" 
 				v-on:saveComment="saveComment"
@@ -17,26 +16,25 @@
 
 		<div>
 			<button type="button" @click="toggleComments">Toggle comments</button>
-			<div v-if="showComments" class="comments-wrapper">     
-				<template v-for="comment in postComments">
-					<!-- <comment 
-						:comment="comment" 
-					/> -->
-					<div>{{ comment.text }}</div>
-				</template>				
-			</div>
+			<template v-if="showComments">
+				<CommentList 
+					:comments="comments"
+				/>
+			</template>
 		</div>
 	</div>
 </template>
 
 <script>
-import AddCommentForm from './comments/AddCommentForm';
+import AddCommentForm from '../comments/AddCommentForm';
+import CommentList from '../comments/CommentList';
 import { mapActions } from 'vuex';
 import { mapGetters } from 'vuex';
 
 export default {
 	components: {
-		AddCommentForm
+		AddCommentForm,
+		CommentList
 	},
 
 	props: {
@@ -50,7 +48,7 @@ export default {
 		return {
 			showComments: false,
 			showCommentForm: false,
-			loaded: false
+			commentsLoaded: false,
 		};
 	},
 
@@ -59,7 +57,7 @@ export default {
 			'commentsByPost'
 		]),
 
-		postComments() {
+		comments() {
 			return this.commentsByPost(this.post.id);
 		}
 	},
@@ -71,7 +69,7 @@ export default {
       	]),
 
 		toggleComments() {
-			if (this.loaded) {
+			if (this.commentsLoaded) {
 				this.showComments = !this.showComments;
 				return;
 			}
@@ -79,7 +77,7 @@ export default {
 			this.fetchComments(this.post.id)
 				.then(() => {
 					this.showComments = true;
-					this.loaded = true;
+					this.commentsLoaded = true;
 				});
 		},
 
@@ -106,12 +104,10 @@ export default {
     box-sizing: border-box;
     margin: 20px 0;
     background: #eee;
-    padding: 20px;
- }
+    padding: 45px;
+}
 
- .comments-wrapper {
- 	min-height: 70px;
- 	border: 1px dotted black;
- 	padding-left: 15px;
- }
+article {
+	margin-bottom: 15px;
+}
 </style>

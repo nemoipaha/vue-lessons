@@ -3,32 +3,31 @@
         <h2>Add a new post</h2>
 
         <form v-if="!submitted">
-            <label>Blog title:</label>
-            <input type="text" required v-model.lazy="blog.title">
+            <label>Post title:</label>
+            <input type="text" required v-model.lazy="post.title">
             
-            <label>Blog content:</label>
-            <textarea name=""
-                      id=""
-                      cols="30"
-                      rows="10"
-                      v-model.lazy="blog.content">
+            <label>Post content:</label>
+            <textarea
+                cols="30"
+                rows="10"
+                v-model.lazy="post.content">
             </textarea>
             
             <div id="checkboxes">
               <label>Ninjas</label>
-              <input type="checkbox" value="ninjas" v-model="blog.categories">
+              <input type="checkbox" value="ninjas" v-model="post.categories">
               <label>Wizards</label>
-              <input type="checkbox" value="wizards" v-model="blog.categories">
+              <input type="checkbox" value="wizards" v-model="post.categories">
               <label>Mario</label>
-              <input type="checkbox" value="mario" v-model="blog.categories">
+              <input type="checkbox" value="mario" v-model="post.categories">
               <label>Cheese</label>
-              <input type="checkbox" value="chesee" v-model="blog.categories">
+              <input type="checkbox" value="chesee" v-model="post.categories">
             </div>
             
-            <select v-model="blog.author">
-              <option v-for="author in authors">{{ author }}</option>
+            <select v-model="post.author">
+              <option v-for="(author, index) in authors" :key="index">{{ author }}</option>
             </select>
-            <button v-on:click.prevent="savePost">Add post</button>
+            <button @click.prevent="savePost">Add post</button>
         </form>
 
         <div v-if="submitted">
@@ -36,14 +35,14 @@
         </div>
 
         <div id="preview">
-            <p>Blog title: {{ blog.title }}</p>
-            <p>Blog content:</p>
-            <p>{{ blog.content }}</p>
-            <p>Blog categories:</p>
+            <p>Post title: {{ post.title }}</p>
+            <p>Post content:</p>
+            <p>{{ post.content }}</p>
+            <p>Post categories:</p>
             <ul>
-              <li v-for="category in blog.categories">{{ category }}</li>
+              <li v-for="(category, index) in post.categories" :key="index">{{ category }}</li>
             </ul>
-            <p>Blog author: {{ blog.author }}</p>
+            <p>Post author: {{ post.author }}</p>
         </div>
     </div>
 </template>
@@ -57,7 +56,7 @@ export default {
     
     data() {
         return {
-            blog: {
+            post: {
                 title: '',
                 content: '',
                 categories: [],
@@ -80,7 +79,7 @@ export default {
       ]),
 
       savePost() {
-        this.addPost(this.blog)
+        this.addPost(this.post)
           .then(() => {
             this.backToList();
           });
@@ -95,28 +94,29 @@ export default {
 </script>
 
 <style scoped>
-    #add-blog *{
-        box-sizing: border-box;
-    }
-    #add-blog{
+    #add-blog {
         margin: 20px auto;
         max-width: 500px;
     }
-    label{
+
+    label {
         display: block;
         margin: 20px 0 10px;
     }
-    input[type="text"], textarea{
+
+    input[type="text"], textarea {
         display: block;
         width: 100%;
         padding: 8px;
     }
-    #preview{
+
+    #preview {
         padding: 10px 20px;
         border: 1px dotted #ccc;
         margin: 30px 0;
     }
-    h3{
+
+    h3 {
         margin-top: 10px;
     }
 
