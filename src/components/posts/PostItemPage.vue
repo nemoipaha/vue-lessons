@@ -1,6 +1,6 @@
 <template>
   <div id="single-blog">
-    <h1>{{ post.title }}</h1>
+    <h1>{{ post.title | capitalize }}</h1>
     
     <article>{{ post.content }}</article>
     

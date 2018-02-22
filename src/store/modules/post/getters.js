@@ -1,11 +1,9 @@
 const getters = {
-	filteredPosts: state => {
-		return state.posts.filter(post => {
-			return post.title 
-				? post.title.toUpperCase().match(state.search.toUpperCase()) 
-				: false;
-  		});
-	},
+	filteredPosts: state => searchStr => {
+        return state.posts.filter(post => {
+            return post.title.toLowerCase().indexOf(searchStr.toLowerCase()) !== -1;
+        });
+	}
 };
 
 export default getters;

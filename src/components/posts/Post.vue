@@ -1,6 +1,6 @@
 <template>
 	<div class="single-post">
-		<router-link :to="'posts/' + post.id" tag="h2">
+		<router-link :to="'posts/' + post.id" class="post-item-link">
 			<span>{{ post.title | capitalize }}</span>
 		</router-link>
       
@@ -109,5 +109,10 @@ export default {
 
 article {
 	margin-bottom: 15px;
+}
+
+.post-item-link {
+	color: darkgreen;;
+	font-size: 22px;
 }
 </style>

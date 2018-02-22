@@ -3,27 +3,25 @@
         <h2>Add a new post</h2>
 
         <form v-if="!submitted">
-            <label>Post title:</label>
+            <label>Title:</label>
             <input type="text" required v-model.lazy="post.title">
             
-            <label>Post content:</label>
+            <label>Content:</label>
             <textarea
                 cols="30"
                 rows="10"
                 v-model.lazy="post.content">
             </textarea>
-            
+
+            <label>Categories:</label>
             <div id="checkboxes">
-              <label>Ninjas</label>
-              <input type="checkbox" value="ninjas" v-model="post.categories">
-              <label>Wizards</label>
-              <input type="checkbox" value="wizards" v-model="post.categories">
-              <label>Mario</label>
-              <input type="checkbox" value="mario" v-model="post.categories">
-              <label>Cheese</label>
-              <input type="checkbox" value="chesee" v-model="post.categories">
+              <div v-for="category in categories">
+                  <label>{{ category }}</label>
+                  <input type="checkbox" :value="category" v-model="post.categories">
+              </div>
             </div>
-            
+
+            <label>Author:</label>
             <select v-model="post.author">
               <option v-for="(author, index) in authors" :key="index">{{ author }}</option>
             </select>
@@ -68,7 +66,8 @@ export default {
 
     computed: {
       ...mapState('post', [
-          'authors'
+          'authors',
+          'categories'
       ])
     },
 

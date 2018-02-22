@@ -2,10 +2,10 @@
   <div id="show-blogs">
     <h1>All posts</h1>
     
-    <input type="text" v-model="search" placeholder="search" @keyup="filterByTitle">
+    <input type="text" v-model="search" placeholder="search">
     
     <div class="posts-wrapper">
-      <template v-for="post in filteredPosts">
+      <template v-for="post in posts">
         <post
           :post="post"  
           :key="post.id"       
@@ -17,8 +17,7 @@
 
 <script>
 import { mapActions } from 'vuex';
-import { mapMutations } from 'vuex';
-import searchMixin from '../../mixins/searchMixin';
+import { mapGetters } from 'vuex';
 import Post from './Post';
 
 export default {
@@ -32,27 +31,25 @@ export default {
     }
   },
 
+  computed: {
+      ...mapGetters('post', [
+          'filteredPosts',
+      ]),
+
+      posts() {
+          return this.filteredPosts(this.search);
+      }
+  },
+
   methods: {
     ...mapActions('post', [
         'fetchPosts',
     ]),
-
-     ...mapMutations('post', [
-      'SEARCH_BY_TITLE',
-    ]),
-
-     filterByTitle() {
-        this['SEARCH_BY_TITLE'](this.search);
-     }
   },
 
   created() {
     this.fetchPosts();
-  },
-  
-  mixins: [
-    searchMixin
-  ]
+  }
 }
 </script>
 

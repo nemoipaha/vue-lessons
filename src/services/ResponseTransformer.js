@@ -1,5 +1,5 @@
 class ResponseTransformer {
-    transformResponse(data) {
+    static transformResponse(data) {
         let newData = [];
 
         // map id values
@@ -12,4 +12,4 @@ class ResponseTransformer {
     }
 }
 
-export default new ResponseTransformer();
+export default ResponseTransformer;

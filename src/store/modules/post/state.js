@@ -9,12 +9,16 @@ const state = {
 	},
 	
 	authors: [
-		'The Net Ninja',
-		'The Angular Avenger',
-		'The Vue Vindicator'
+		"Mr. Incredible",
+		"Mr. Stethem",
+		"Mr. Smith"
 	],
 
-	search: ''
+    categories: [
+		'Lorem ipsum',
+		'News',
+        'Zombie',
+    ],
 };
 
 export default state;

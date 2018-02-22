@@ -9,11 +9,8 @@ const mutations = {
 
 	FETCH_POSTS (state, posts) {
 		state.posts = posts;
+        state.filteredPosts = posts;
 	},
-
-	SEARCH_BY_TITLE (state, searchStr) {
-		state.search = searchStr;
-	}
 };
 
 export default mutations;
